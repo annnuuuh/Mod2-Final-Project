@@ -1,7 +1,32 @@
 class Customer {
-  constructor() {
-
+  constructor(customer) {
+    this.id = customer.id;
+    this.name = customer.name;
   }
 };
 
 export default Customer;
+
+//SAMPLE CUSTOMERS
+// {
+// "customers": [
+// {
+// "id": 1,
+// "name": "Leatha Ullrich"
+// },
+// {
+// "id": 2,
+// "name": "Rocio Schuster"
+// },
+// {
+// "id": 3,
+// "name": "Kelvin Schiller"
+// },
+// {
+// "id": 4,
+// "name": "Kennedi Emard"
+// },
+// {
+// "id": 5,
+// "name": "Rhiannon Little"
+// };
