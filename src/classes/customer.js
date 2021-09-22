@@ -1,32 +1,20 @@
+import Booking from './booking'
+
 class Customer {
   constructor(customer) {
     this.id = customer.id;
     this.name = customer.name;
+    this.bookings = [];
+  }
+  
+  setBookings(bookings) {
+    let booking = bookings.map(booking => new Booking(booking));
+    if (booking.userID === this.id) {
+      this.bookings.push(booking)
+    }
   }
 };
 
-export default Customer;
 
-//SAMPLE CUSTOMERS
-// {
-// "customers": [
-// {
-// "id": 1,
-// "name": "Leatha Ullrich"
-// },
-// {
-// "id": 2,
-// "name": "Rocio Schuster"
-// },
-// {
-// "id": 3,
-// "name": "Kelvin Schiller"
-// },
-// {
-// "id": 4,
-// "name": "Kennedi Emard"
-// },
-// {
-// "id": 5,
-// "name": "Rhiannon Little"
-// };
+
+export default Customer;
