@@ -1,3 +1,5 @@
+import Room from './room';
+
 class Booking {
   constructor(booking) {
     this.id = booking.id;
@@ -5,6 +7,11 @@ class Booking {
     this.date = booking.date;
     this.roomNumber = booking.roomNumber;
     this.roomServiceCharges = booking.roomServiceCharges;
+  }
+  getRoomInformation(roomInfo) {
+    this.roomNumber = this.roomNumber.map(room => {
+      return new Room(room);
+    });
   }
 };
 

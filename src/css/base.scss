@@ -4,3 +4,14 @@
 body {
   background: $primary-background;
 }
+
+.bookings-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.recipe {
+  border: 2px solid black;
+  margin: 10px;
+}

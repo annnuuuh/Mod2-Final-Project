@@ -7,26 +7,33 @@ import { fetchCustomers, fetchRooms, fetchBookings } from './apiCalls.js';
 import Customer from './classes/customer.js';
 import Room from './classes/room.js';
 import Booking from './classes/booking.js';
+import BookingRepository from './classes/bookingRepository';
+import domUpdates from './domUpdates';
 
 //GLOBAL VARIABLE//////////////////
-
+let bookingRepository;
+let customer;
 //FETCH CALLS//////////////////////
-const fetchData = () => {
-  Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
-  .then(data => parseData(data))
-}
 
-const parseData = (data) => {
-  let customerData = data[0]
-  let roomData = data[1]
-  let bookingData = data[2]
-  getData(customerData, roomData, bookingData)
-}
 //EVENT LISTENERS//////////////////
-
+window.addEventListener('load', loadCustomer);
 //FUNCTIONS
-const getData = (customerData, roomData, bookingData) => {
-  customer = new Customer(customerData[0])
-  room = new Room(roomData)
-  booking = new Booking(bookingData)
+
+
+function loadCustomer() {
+  fetchCustomers().then(customerData => {
+    getBookings(customerData);
+  });
+}
+
+function getBookings(customerData) {
+  fetchBookings().then(bookingData => {
+    customer = new Customer(customerData['customers'][4])
+    bookingRepository = new BookingRepository(bookingData['bookings'])
+    domUpdates.addCustomerName(customer.name)
+    bookingRepository.getBookings()
+    bookingRepository.findCustomerBookings(customer)
+    domUpdates.displayCustomerBookings(bookingRepository.customerBookings);
+    console.log(bookingRepository.customerBookings[0].date)
+  });
 }

@@ -24,7 +24,7 @@ const sampleRoomsData =
 "bedSize": "king",
 "numBeds": 1,
 "costPerNight": 491.14
-};
+}
 ]
 };
 

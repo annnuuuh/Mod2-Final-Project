@@ -1,19 +1,29 @@
-export function fetchCustomers() {
+
+function fetchCustomers() {
   return fetch("http://localhost:3001/api/v1/customers")
   .then(response => response.json())
-  .then(data => data);
+  .then(data => data)
+  .catch(error => console.log(error))
 }
 
-export function fetchRooms() {
+function fetchRooms() {
   return fetch("http://localhost:3001/api/v1/rooms")
   .then(response => response.json())
-  .then(data => data);
+  .then(data => data)
+  .catch(error => console.log(error))
 }
 
-export function fetchBookings() {
+function fetchBookings() {
   return fetch("http://localhost:3001/api/v1/bookings")
   .then(response => response.json())
-  .then(data => data);
+  .then(data => data)
+  .catch(error => console.log(error))
+}
+
+export {
+  fetchCustomers,
+  fetchRooms,
+  fetchBookings
 }
 
 // future -- export const add/remove bookings??
