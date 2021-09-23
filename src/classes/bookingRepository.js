@@ -19,8 +19,6 @@ class BookingRepository {
       return booking.userID === customer.id;
     })
   }
-
-  
 }
 
 export default BookingRepository;

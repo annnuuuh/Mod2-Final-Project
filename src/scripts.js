@@ -28,7 +28,7 @@ function loadCustomer() {
 
 function getBookings(customerData) {
   fetchBookings().then(bookingData => {
-    customer = new Customer(customerData['customers'][4])
+    customer = new Customer(customerData['customers'][25])
     bookingRepository = new BookingRepository(bookingData['bookings'])
     domUpdates.addCustomerName(customer.name)
     bookingRepository.getBookings()
