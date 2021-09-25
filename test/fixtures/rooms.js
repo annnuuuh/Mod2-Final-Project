@@ -1,6 +1,5 @@
 const sampleRoomsData =
-{
-"rooms": [
+[
 {
 "number": 1,
 "roomType": "residential suite",
@@ -25,7 +24,6 @@ const sampleRoomsData =
 "numBeds": 1,
 "costPerNight": 491.14
 }
-]
-};
+];
 
 export default sampleRoomsData;

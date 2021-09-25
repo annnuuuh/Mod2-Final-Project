@@ -4,23 +4,26 @@ import Room from './room';
 import dayjs from 'dayjs';
 
 class BookingRepository {
-  constructor(bookingData, roomData) {
+  constructor(bookingData, roomData, customerData) {
     this.bookings = bookingData;
     this.customerBookings;
     this.rooms = roomData;
+    this.customers = customerData;
     this.amountSpent = 0;
+    this.user;
   }
 
   getBookings() {
+    console.log(this.bookings);
     this.bookings = this.bookings.map(booking => {
       const newBooking = new Booking(booking);
       return newBooking;
     })
   }
 
-  findCustomerBookings(customer) {
+  findCustomerBookings() {
     this.customerBookings = this.bookings.filter(booking => {
-      return booking.userID === customer.id;
+      return booking.userID === this.user.id;
     })
   }
 

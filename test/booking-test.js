@@ -10,9 +10,8 @@ describe('Booking', function() {
   let bookings;
   let booking;
   beforeEach(function() {
-    booking = new Booking(sampleBookingsData['bookings'][0])
-    customer = new Customer(sampleCustomerData['customers'][0]);
-    bookings = sampleBookingsData.bookings.map(booking => new Booking(booking))
+    booking = new Booking(sampleBookingsData[0])
+    customer = new Customer(sampleCustomerData[0]);
   });
 
   it('should be a function', function() {
@@ -28,7 +27,7 @@ describe('Booking', function() {
   });
 
   it('should have a user id that matches a customer id', function() {
-    expect(booking.userID).to.equal(sampleCustomerData['customers'][0].id);
+    expect(booking.userID).to.equal(sampleCustomerData[0].id);
   });
 
   it('should hold the date of the booking', function() {

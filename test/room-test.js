@@ -6,7 +6,7 @@ import sampleRoomsData from './fixtures/rooms';
 describe('Booking', function() {
   let room;
   beforeEach(function() {
-    room = new Room(sampleRoomsData['rooms'][0])
+    room = new Room(sampleRoomsData[0])
   });
 
   it('should be a function', function() {

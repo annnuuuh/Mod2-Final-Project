@@ -1,8 +1,6 @@
 //SAMPLE CUSTOMERS
 
 const sampleCustomerData =
-{
-  "customers":
   [
     {
       "id": 1,
@@ -25,6 +23,5 @@ const sampleCustomerData =
       "name": "Rhiannon Little"
     }
   ]
-};
 
 export default sampleCustomerData;

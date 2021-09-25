@@ -9,8 +9,7 @@ describe('Customer', function() {
   let customer;
   let bookings;
   beforeEach(function() {
-    customer = new Customer(sampleCustomerData['customers'][0]);
-    bookings = sampleBookingsData.bookings.map(booking => new Booking(booking))
+    customer = new Customer(sampleCustomerData[0]);
   });
 
   it('should be a function', function() {
@@ -26,6 +25,6 @@ describe('Customer', function() {
   });
 
   it('should have and id', function() {
-    expect(customer.id).to.equal(sampleCustomerData['customers'][0].id);
+    expect(customer.id).to.equal(sampleCustomerData[0].id);
   });
 })

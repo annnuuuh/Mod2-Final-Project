@@ -1,7 +1,5 @@
 /////SAMPLE BOOKINGS
-const sampleBookingsData =
-{
-"bookings": [
+const sampleBookingsData = [
 {
 "id": "5fwrgu4i7k55hl6sz",
 "userID": 1,
@@ -24,6 +22,5 @@ const sampleBookingsData =
 "roomServiceCharges": []
 }
 ]
-};
 
 export default sampleBookingsData;
