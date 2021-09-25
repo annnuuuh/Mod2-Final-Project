@@ -40,12 +40,4 @@ describe('Booking', function() {
   it('should have a cost per night', function() {
     expect(room.costPerNight).to.equal(358.4);
   });
-
-  // it('should be able to have bookings', function() {
-  //   customer.setBookings(bookings);
-  //   const actualBooking = customer.bookings[0];
-  //   const expectedBooking = bookings[0];
-  //   expect(actualBooking).to.be.an.instanceof(Booking);
-  //   expect(actualBooking.id).to.equal(expectedBooking.id);
-  // });
 })

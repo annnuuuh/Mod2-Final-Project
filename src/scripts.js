@@ -13,6 +13,7 @@ import domUpdates from './domUpdates';
 //GLOBAL VARIABLE//////////////////
 let bookingRepository;
 let customer;
+let booking;
 //FETCH CALLS//////////////////////
 
 //EVENT LISTENERS//////////////////
@@ -28,12 +29,15 @@ function loadCustomer() {
 
 function getBookings(customerData) {
   fetchBookings().then(bookingData => {
-    customer = new Customer(customerData['customers'][25])
-    bookingRepository = new BookingRepository(bookingData['bookings'])
-    domUpdates.addCustomerName(customer.name)
-    bookingRepository.getBookings()
-    bookingRepository.findCustomerBookings(customer)
-    domUpdates.displayCustomerBookings(bookingRepository.customerBookings);
-    console.log(bookingRepository.customerBookings[0].date)
+    fetchRooms().then(roomData => {
+      customer = new Customer(customerData['customers'][25])
+      bookingRepository = new BookingRepository(bookingData['bookings'], roomData['rooms'])
+      domUpdates.addCustomerName(customer.name)
+      bookingRepository.getBookings()
+      bookingRepository.findCustomerBookings(customer)
+      domUpdates.displayCustomerBookings(bookingRepository.customerBookings);
+      bookingRepository.getCost(roomData, customer);
+      domUpdates.displayTotalSpent(bookingRepository.amountSpent);
+    })
   });
 }

@@ -42,12 +42,4 @@ describe('Booking', function() {
   it('should keep track of all the room charges', function() {
     expect(booking.roomServiceCharges).to.deep.equal([]);
   });
-
-  // it('should be able to have bookings', function() {
-  //   customer.setBookings(bookings);
-  //   const actualBooking = customer.bookings[0];
-  //   const expectedBooking = bookings[0];
-  //   expect(actualBooking).to.be.an.instanceof(Booking);
-  //   expect(actualBooking.id).to.equal(expectedBooking.id);
-  // });
 })

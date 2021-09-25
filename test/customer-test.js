@@ -28,12 +28,4 @@ describe('Customer', function() {
   it('should have and id', function() {
     expect(customer.id).to.equal(sampleCustomerData['customers'][0].id);
   });
-
-  // it('should be able to have bookings', function() {
-  //   customer.setBookings(bookings);
-  //   const actualBooking = customer.bookings[0];
-  //   const expectedBooking = bookings[0];
-  //   expect(actualBooking).to.be.an.instanceof(Booking);
-  //   expect(actualBooking.id).to.equal(expectedBooking.id);
-  // });
 })
