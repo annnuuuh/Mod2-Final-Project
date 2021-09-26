@@ -44,6 +44,7 @@ function loadCustomer(id) {
     domUpdates.displayCustomerBookings(bookingRepository.customerBookings);
     bookingRepository.getCost();
     domUpdates.displayTotalSpent(bookingRepository.amountSpent);
+
   })
 }
 
@@ -54,7 +55,8 @@ function findAvailableRooms(event) {
   bookingRepository.findOpenRooms(formattedDate);
   domUpdates.hide(userDashboard);
   domUpdates.show(vacantRooms);
-  domUpdates.displayAvailableRooms(bookingRepository.availableRooms)
-  console.log(bookingRepository.unavailableRooms);
-  console.log(bookingRepository.availableRooms);
+  domUpdates.displayAvailableRooms(bookingRepository.availableRooms);
+  bookingRepository.getRoomTags();
+  console.log(bookingRepository.roomTags);
+  // domUpdates.displayRoomTags(bookingRepository.roomTags);
 }

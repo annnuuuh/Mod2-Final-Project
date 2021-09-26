@@ -13,6 +13,7 @@ class BookingRepository {
     this.user;
     this.unavailableRooms;
     this.availableRooms;
+    this.roomTags;
   }
 
   getBookings() {
@@ -59,5 +60,14 @@ class BookingRepository {
       }
     })
   }
+
+  getRoomTags() {
+    this.roomTags = [];
+    this.rooms.forEach(room => {
+      if (!this.roomTags.includes(room.roomType)) {        this.roomTags.push(room.roomType);
+      }
+    })
+  }
 }
+
 export default BookingRepository;
