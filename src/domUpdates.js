@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 const domUpdates = {
   addCustomerName(customerName) {
     document.querySelector('.js-user-dashboard').innerText = customerName;
@@ -17,6 +19,10 @@ const domUpdates = {
 
   displayTotalSpent(customerTotal) {
     document.querySelector('.js-total-spent').innerHTML = `<p>Total Spend: ${customerTotal}</p>`;
+  },
+
+  displayAvailableRooms() {
+    
   }
 }
 

@@ -9,16 +9,18 @@ import Room from './classes/room.js';
 import Booking from './classes/booking.js';
 import BookingRepository from './classes/bookingRepository';
 import domUpdates from './domUpdates';
+import dayjs from 'dayjs';
 
-////////////////GLOBAL VARIABLE//////////////////
+
 let bookingRepository;
 let customer;
 let booking;
-////////////////FETCH CALLS//////////////////////
+let today = dayjs().format('YYYY-MM-DD');
+const sumbitDateBtn = document.getElementById("datebtn");
 
-////////////////EVENT LISTENERS//////////////////
+
 window.addEventListener('load', loadApi);
-////////////////FUNCTIONS////////////////////////
+sumbitDateBtn.addEventListener('click', findAvailableRooms);
 
 
 function loadApi() {
@@ -27,7 +29,8 @@ function loadApi() {
     bookingRepository = new BookingRepository(data[1], data[2], data[0])
     loadCustomer(25);
     bookingRepository.getBookings()
-
+    // document.getElementById("calendar").setAttribute("min", today);
+    document.getElementById("calendar").setAttribute("value", today);
   })
 }
 
@@ -41,4 +44,13 @@ function loadCustomer(id) {
     bookingRepository.getCost();
     domUpdates.displayTotalSpent(bookingRepository.amountSpent);
   })
+}
+
+function findAvailableRooms(event) {
+  event.preventDefault();
+  const dateSelection = document.getElementById("calendar").value;
+  let formattedDate = dayjs(dateSelection).format('YYYY/MM/DD');
+  bookingRepository.findOpenRooms(formattedDate);
+  console.log(bookingRepository.unavailableRooms);
+  console.log(bookingRepository.availableRooms);
 }
