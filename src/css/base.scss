@@ -14,7 +14,7 @@ nav {
     display: flex;
     justify-content: flex-end;
 }
-.js-booking-card {
+.js-booking-card, .js-available-rooms {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -22,7 +22,7 @@ nav {
   align-items: center;
 }
 
-.booking {
+.booking, .room {
   padding: 10px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.7);

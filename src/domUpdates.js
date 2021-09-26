@@ -1,6 +1,17 @@
 import dayjs from 'dayjs';
 
 const domUpdates = {
+
+  hide(...elements) {
+  elements.forEach(element => {
+    element.classList.add('hidden');
+  })
+},
+
+  show(...views) {
+  views.forEach(view => view.classList.remove('hidden'));
+},
+
   addCustomerName(customerName) {
     document.querySelector('.js-user-dashboard').innerText = customerName;
   },
@@ -21,8 +32,19 @@ const domUpdates = {
     document.querySelector('.js-total-spent').innerHTML = `<p>Total Spend: ${customerTotal}</p>`;
   },
 
-  displayAvailableRooms() {
-    
+  displayAvailableRooms(availableRooms) {
+    let availableRoomsSection = document.querySelector('.js-available-rooms');
+    availableRooms.forEach(room => {
+      const roomCard = `<article class="room ${room.number}">
+      <pclass="card-title ${room.number}">Room Details</p>
+      <p class="room-number ${room.number}">Room Type: ${room.roomType}</p>
+      <p class="room-number ${room.number}">Room Number: ${room.number}</p>
+      <p class="room-number ${room.number}">Number of Beds: ${room.numBeds}</p>
+      <p class="room-number ${room.number}">Bidet: ${room.bidet}</p>
+      <p class="room-number ${room.number}">Bed Size: ${room.bedSize}</p>
+      <p class="room-number ${room.number}">Cost Per Night: ${room.costPerNight}</p>`;
+      availableRoomsSection.innerHTML += roomCard;
+    })
   }
 }
 

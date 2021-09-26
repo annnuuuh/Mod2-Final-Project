@@ -11,7 +11,8 @@ import BookingRepository from './classes/bookingRepository';
 import domUpdates from './domUpdates';
 import dayjs from 'dayjs';
 
-
+let userDashboard = document.querySelector('.bookings-container');
+let vacantRooms = document.querySelector('.js-available-rooms');
 let bookingRepository;
 let customer;
 let booking;
@@ -51,6 +52,9 @@ function findAvailableRooms(event) {
   const dateSelection = document.getElementById("calendar").value;
   let formattedDate = dayjs(dateSelection).format('YYYY/MM/DD');
   bookingRepository.findOpenRooms(formattedDate);
+  domUpdates.hide(userDashboard);
+  domUpdates.show(vacantRooms);
+  domUpdates.displayAvailableRooms(bookingRepository.availableRooms)
   console.log(bookingRepository.unavailableRooms);
   console.log(bookingRepository.availableRooms);
 }
