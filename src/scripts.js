@@ -52,11 +52,10 @@ function findAvailableRooms(event) {
   event.preventDefault();
   const dateSelection = document.getElementById("calendar").value;
   let formattedDate = dayjs(dateSelection).format('YYYY/MM/DD');
-  bookingRepository.findOpenRooms(formattedDate);
+  bookingRepository.findVacantRooms(formattedDate);
+  bookingRepository.getRoomTags();
   domUpdates.hide(userDashboard);
   domUpdates.show(vacantRooms);
   domUpdates.displayAvailableRooms(bookingRepository.availableRooms);
-  bookingRepository.getRoomTags();
-  console.log(bookingRepository.roomTags);
-  // domUpdates.displayRoomTags(bookingRepository.roomTags);
+  domUpdates.displayRoomTagsOnSearch(bookingRepository.roomTags)
 }

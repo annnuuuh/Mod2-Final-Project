@@ -3,14 +3,14 @@ import dayjs from 'dayjs';
 const domUpdates = {
 
   hide(...elements) {
-  elements.forEach(element => {
-    element.classList.add('hidden');
-  })
-},
+    elements.forEach(element => {
+      element.classList.add('hidden');
+    })
+  },
 
   show(...views) {
-  views.forEach(view => view.classList.remove('hidden'));
-},
+    views.forEach(view => view.classList.remove('hidden'));
+  },
 
   addCustomerName(customerName) {
     document.querySelector('.js-user-dashboard').innerText = customerName;
@@ -51,6 +51,19 @@ const domUpdates = {
         }
     })
   },
+
+  displayRoomTagsOnSearch(tags) {
+    let roomTagSection = document.querySelector('.js-tags');
+    roomTagSection.innerHTML = "";
+    tags.forEach(tag => {
+      const tagCheckBox =
+      `<label class="tags">
+      <input class="tag" type="checkbox" name="${tag}">${tag}
+      </label>
+      `;
+      roomTagSection.innerHTML += tagCheckBox;
+    })
+  }
 }
 
 export default domUpdates;

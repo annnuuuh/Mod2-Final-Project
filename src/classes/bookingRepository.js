@@ -44,7 +44,7 @@ class BookingRepository {
     this.amountSpent = `$${customerSpend.toFixed(2)}`;
   }
 
-  findOpenRooms(formattedDate) {
+  findVacantRooms(formattedDate) {
     this.unavailableRooms = [];
     this.availableRooms = [];
     const filteredBookings = this.bookings.filter(booking => {
