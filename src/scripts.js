@@ -42,7 +42,6 @@ function filterRoomsByType(event) {
 function addTag(tag) {
   bookingRepository.selectedTags.push(tag);
   const filteredRooms = bookingRepository.filterRoomByTags();
-  console.log(filteredRooms);
   domUpdates.displayAvailableRooms(filteredRooms);
 }
 
