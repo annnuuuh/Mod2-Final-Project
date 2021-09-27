@@ -14,6 +14,7 @@ class BookingRepository {
     this.unavailableRooms;
     this.availableRooms;
     this.roomTags;
+    this.selectedTags = [];
   }
 
   getBookings() {
@@ -67,6 +68,20 @@ class BookingRepository {
       if (!this.roomTags.includes(room.roomType)) {        this.roomTags.push(room.roomType);
       }
     })
+  }
+  filterRoomByTags() {
+    let filteredRooms = [];
+    this.selectedTags.forEach(selectedTag => {
+      this.addToFilteredRoom(selectedTag, filteredRooms);
+    })
+    return filteredRooms;
+  }
+  addToFilteredRoom(selectedTag, filteredRooms) {
+    this.availableRooms.forEach(availableRoom => {
+      if (availableRoom.roomType === selectedTag) {
+        filteredRooms.push(availableRoom);
+      }
+    });
   }
 }
 

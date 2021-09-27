@@ -34,22 +34,24 @@ const domUpdates = {
 
   displayAvailableRooms(availableRooms) {
     let availableRoomsSection = document.querySelector('.js-available-rooms');
-    availableRoomsSection.innerHTML = "";
-      availableRooms.forEach(room => {
-        if (!room) {
-          availableRoomsSection.innerHTML = `<p>We are so sorry! There are no rooms available for the date you've selected. Kindly select a different date.</p>`;
-        } else {
-          const roomCard = `<article class="room ${room.number}">
-          <pclass="card-title ${room.number}">Room Details</p>
-          <p class="room-number ${room.number}">Room Type: ${room.roomType}</p>
-          <p class="room-number ${room.number}">Room Number: ${room.number}</p>
-          <p class="room-number ${room.number}">Number of Beds: ${room.numBeds}</p>
-          <p class="room-number ${room.number}">Bidet: ${room.bidet}</p>
-          <p class="room-number ${room.number}">Bed Size: ${room.bedSize}</p>
-          <p class="room-number ${room.number}">Cost Per Night: ${room.costPerNight}</p>`;
-          availableRoomsSection.innerHTML += roomCard;
-        }
-    })
+    if (!availableRooms.length) {
+      availableRoomsSection.innerHTML = `<p>It looks like we do not have any rooms that match your selection. We are so sorry! Kindly try a different date or room type. Thank you.</p>`
+    } else {
+      availableRoomsSection.innerHTML = "";
+        availableRooms.forEach(room => {
+            const roomCard = `<article class="room ${room.number}">
+            <pclass="card-title ${room.number}">Room Details</p>
+            <p class="room-number ${room.number}">Room Type: ${room.roomType}</p>
+            <p class="room-number ${room.number}">Room Number: ${room.number}</p>
+            <p class="room-number ${room.number}">Number of Beds: ${room.numBeds}</p>
+            <p class="room-number ${room.number}">Bidet: ${room.bidet}</p>
+            <p class="room-number ${room.number}">Bed Size: ${room.bedSize}</p>
+            <p class="room-number ${room.number}">Cost Per Night: ${room.costPerNight}</p>
+            <button class"room-number ${room.number}">Book This Room!</button>`;
+            availableRoomsSection.innerHTML += roomCard;
+          })
+    }
+
   },
 
   displayRoomTagsOnSearch(tags) {
