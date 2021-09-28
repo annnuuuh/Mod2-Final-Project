@@ -43,7 +43,7 @@ function addANewBooking(event) {
   bookingRepository.getCost();
   domUpdates.show(userDashboard);
   domUpdates.hide(vacantRooms, roomTypeFilterSection);
-  // location.reload();
+  location.reload();
 }
 
 
@@ -83,7 +83,7 @@ function loadApi() {
     bookingRepository = new BookingRepository(data[1], data[2], data[0])
     loadCustomer(5);
     bookingRepository.getBookings()
-    // document.getElementById("calendar").setAttribute("min", today);
+    document.getElementById("calendar").setAttribute("min", today);
     document.getElementById("calendar").setAttribute("value", today);
   })
 }
