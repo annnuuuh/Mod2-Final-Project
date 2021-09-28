@@ -19,19 +19,56 @@ const today = dayjs().format('YYYY-MM-DD');
 const roomTypeFilterSection = document.querySelector('.js-tags');
 const bookAvailableRoom = document.querySelector('.js-add-booking');
 const returnHomeBtn = document.querySelector('.js-return-to-dashboard');
+const loginForm = document.getElementById("login-form");
+const loginButton = document.getElementById("login-form-submit");
+const loginErrorMsg = document.querySelector('.error-message');
+const dateSelector = document.querySelector('.date-selection-form');
+const loginMessage = document.querySelector('.please-log-in');
 let bookingRepository;
 let customer;
 let booking;
 let room;
 
 
-window.addEventListener('load', loadApi);
+window.addEventListener('load', displayLogin);
 sumbitDateBtn.addEventListener('click', findAvailableRooms);
 roomTypeFilterSection.addEventListener('click', function(event) {
   filterRoomsByType(event);
 });
 vacantRooms.addEventListener('click', addANewBooking);
 returnHomeBtn.addEventListener('click', showDashboard);
+
+loginButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const username = loginForm.username.value;
+    const password = loginForm.password.value;
+    let customerIdA = [username.charAt(8)]
+    let customerIdB = [username.charAt(9)]
+    let customerId = `${customerIdA}${customerIdB}`
+    if (parseInt(customerId) > 0 && parseInt(customerId) <= 50 && password === "overlook2021") {
+        loadApi(customerId)
+    } else {
+        domUpdates.show(loginErrorMsg)
+        loginErrorMsg.style.opacity = 1;
+    }
+})
+
+function displayLogin() {
+  domUpdates.show(loginForm, loginMessage);
+  domUpdates.hide(vacantRooms, roomTypeFilterSection, returnHomeBtn, userDashboard, dateSelector)
+}
+function loadApi(customerId) {
+  Promise.all([fetchCustomers(), fetchBookings(), fetchRooms()])
+  .then(data => {
+    bookingRepository = new BookingRepository(data[1], data[2], data[0])
+    loadCustomer(customerId);
+    bookingRepository.getBookings()
+    document.getElementById("calendar").setAttribute("min", today);
+    document.getElementById("calendar").setAttribute("value", today);
+    domUpdates.hide(loginForm, loginMessage);
+    domUpdates.show(userDashboard, dateSelector)
+  })
+}
 
 function showDashboard() {
   domUpdates.show(userDashboard);
@@ -43,9 +80,6 @@ function addANewBooking(event) {
   const dateSelection = document.getElementById("calendar").value;
   let formattedDate = dayjs(dateSelection).format('YYYY/MM/DD');
   const roomNumber = parseInt(event.target.closest('article').id);
-  // const newBooking = bookingRepository.availableRooms.find(availRoom => {
-    // return availRoom.number === roomNumber;
-  // });
   addBooking(roomNumber, customer, formattedDate);
   bookingRepository.findCustomerBookings(customer)
   bookingRepository.getCost();
@@ -84,27 +118,16 @@ function removeTag(tag) {
   }
 }
 
-function loadApi() {
-  Promise.all([fetchCustomers(), fetchBookings(), fetchRooms()])
-  .then(data => {
-    bookingRepository = new BookingRepository(data[1], data[2], data[0])
-    loadCustomer(30);
-    bookingRepository.getBookings()
-    document.getElementById("calendar").setAttribute("min", today);
-    document.getElementById("calendar").setAttribute("value", today);
-  })
-}
-
 function loadCustomer(id) {
   fetchUser(id).then(customerData => {
     customer = new Customer(customerData);
     bookingRepository.user = customer;
     bookingRepository.findCustomerBookings(customer)
     domUpdates.addCustomerName(customer.name)
+    console.log(bookingRepository.customerBookings);
     domUpdates.displayCustomerBookings(bookingRepository.customerBookings);
     bookingRepository.getCost();
     domUpdates.displayTotalSpent(bookingRepository.amountSpent);
-
   })
 }
 
@@ -114,12 +137,14 @@ function findAvailableRooms(event) {
   let formattedDate = dayjs(dateSelection).format('YYYY/MM/DD');
   bookingRepository.findVacantRooms(formattedDate);
   bookingRepository.getRoomTags();
-  domUpdates.hide(userDashboard);
-  domUpdates.show(vacantRooms, returnHomeBtn);
+  domUpdates.hide(userDashboard, loginMessage);
+  domUpdates.show(vacantRooms, returnHomeBtn, roomTypeFilterSection);
   domUpdates.displayAvailableRooms(bookingRepository.availableRooms);
   domUpdates.displayRoomTagsOnSearch(bookingRepository.roomTags)
 }
 
 export {
-loadApi
+loadApi,
+loadCustomer,
+bookingRepository
 }

@@ -13,6 +13,7 @@
   <h1>The Rosebud Motel</h1>
 </header>
 <nav>
+  <p class="please-log-in hidden">Log in to see your bookings.</p>
   <form class="date-selection-form">
     <label for="start">Start a new booking:
     <input type="date" class="js-date-selection" name="date-selector" id="calendar">
@@ -26,26 +27,24 @@
 </nav>
 
 <body>
-    <!-- <img src="./images/floralprintbackground.png" alt="floral background"> -->
-
+  <div class="error-message hidden" id="login-error-msg-holder">
+    <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+  </div>
+  <form class="js-user-login hidden"id="login-form">
+    <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+    <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+    <input type="submit" value="Login" id="login-form-submit">
+  </form>
   <section class="bookings-container">
     <h2 class="all-bookings-title">Confirmed Bookings</h2>
     <section class="js-booking-card">
     </section>
   </section>
-  <!-- <section class="upcoming-bookings-container"> -->
-    <!-- <article class="upcoming-booking-card"> -->
-    <!-- </article> -->
-  <!-- </section> -->
   <aside class="js-tags">
   </aside>
   <section class="js-available-rooms hidden">
     <div class="js-add-booking"></div>
   </section>
-  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
-
-
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 </body>
 </html>

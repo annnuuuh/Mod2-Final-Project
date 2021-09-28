@@ -1,5 +1,8 @@
+import Booking from './classes/booking';
 import dayjs from 'dayjs';
-import { loadApi } from './scripts.js';
+import { loadApi, loadCustomer, bookingRepository } from './scripts.js';
+
+
 
 function fetchCustomers() {
   return fetch("http://localhost:3001/api/v1/customers")
@@ -40,7 +43,9 @@ function addBooking(room, customer, date) {
     headers: { 'Content-Type': 'application/json' }
   })
   .then(response => response.json())
-  .then(loadApi())
+  .then(response => bookingRepository.bookings.push(new Booking(response.newBooking)))
+  // .then(loadApi(customer.id))
+  .then(loadCustomer(customer.id))
   .catch(error => console.log(error));
 }
 

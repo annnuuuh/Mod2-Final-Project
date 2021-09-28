@@ -1,5 +1,5 @@
-/* This is an example of how to import a partial scss file*/
 @import '_variables';
+@import '_mixins';
 
 * {
   font-family: $main-font;
@@ -7,7 +7,6 @@
 }
 
 body {
-  // background: #717744;
   background: url(../images/floralprintbackground.png);
 }
 
@@ -20,13 +19,13 @@ h1, h2 {
   background: rgba(255, 255, 255, 0.95);
 }
 
-header {
+header, .js-user-login {
   display: flex;
   justify-content: center;
 }
 
 nav {
-    display: flex;
+    @include flexStyle();
     justify-content: center;
     align-items: center;
 }
@@ -38,12 +37,11 @@ form, .js-return-to-dashboard, .js-user-dashboard, .js-total-spent {
   align-self: center;
 }
 
-.js-booking-card, .js-available-rooms {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.js-booking-card, .js-available-rooms, {
+  @include flexStyle();
   justify-content: space-around;
   align-items: center;
+  pointer-events: none;
 }
 
 nav, article {
@@ -57,13 +55,16 @@ nav, article {
   font-size: 25px;
 }
 
+button {
+  pointer-events: initial;
+}
+
 .js-return-to-dashboard, #datebtn {
   box-shadow: none;
   background-color: white;
   height: 31px;
   cursor: pointer;
   border: none;
-
 }
 
 .hidden {
