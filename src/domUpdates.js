@@ -18,6 +18,7 @@ const domUpdates = {
 
   displayCustomerBookings(customerBookings) {
     let bookingSection = document.querySelector('.js-booking-card');
+    bookingSection.innerHTML = "";
     customerBookings.forEach(booking => {
       const bookingCard =
         `<article class="booking ${booking.id}">

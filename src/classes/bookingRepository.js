@@ -29,7 +29,7 @@ class BookingRepository {
       return booking.userID === this.user.id;
     })
     this.customerBookings = filteredBookings.sort((a, b) => {
-      return dayjs(a.date) - dayjs(b.date);
+      return dayjs(b.date) - dayjs(a.date);
     })
   }
 
