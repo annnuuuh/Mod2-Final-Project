@@ -39,7 +39,7 @@ const domUpdates = {
     } else {
       availableRoomsSection.innerHTML = "";
         availableRooms.forEach(room => {
-            const roomCard = `<article class="room ${room.number}">
+            const roomCard = `<article class="${room.number}" id="${room.number}">
             <pclass="card-title ${room.number}">Room Details</p>
             <p class="room-number ${room.number}">Room Type: ${room.roomType}</p>
             <p class="room-number ${room.number}">Room Number: ${room.number}</p>

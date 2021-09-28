@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 
 function fetchCustomers() {
   return fetch("http://localhost:3001/api/v1/customers")
@@ -27,11 +28,27 @@ function fetchBookings() {
   .catch(error => console.log(error))
 }
 
+function addBooking(room, customer, date) {
+  console.log(room);
+  return fetch("http://localhost:3001/api/v1/bookings", {
+    method: 'POST',
+    body: JSON.stringify({
+      userID: customer.id,
+      date: date,
+      roomNumber: room,
+    }),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(response => response.json())
+  .catch(error => console.log(error));
+}
+
 export {
   fetchCustomers,
   fetchUser,
   fetchRooms,
-  fetchBookings
+  fetchBookings,
+  addBooking
 }
 
 // future -- export const add/remove bookings??

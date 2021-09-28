@@ -3,7 +3,7 @@
 import './css/base.scss';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
-import { fetchCustomers, fetchUser, fetchRooms, fetchBookings } from './apiCalls.js';
+import { fetchCustomers, fetchUser, fetchRooms, fetchBookings, addBooking } from './apiCalls.js';
 import Customer from './classes/customer.js';
 import Room from './classes/room.js';
 import Booking from './classes/booking.js';
@@ -16,9 +16,11 @@ const vacantRooms = document.querySelector('.js-available-rooms');
 const sumbitDateBtn = document.getElementById("datebtn");
 const today = dayjs().format('YYYY-MM-DD');
 const roomTypeFilterSection = document.querySelector('.js-tags');
+const bookAvailableRoom = document.querySelector('.js-add-booking');
 let bookingRepository;
 let customer;
 let booking;
+let room;
 
 
 window.addEventListener('load', loadApi);
@@ -26,6 +28,22 @@ sumbitDateBtn.addEventListener('click', findAvailableRooms);
 roomTypeFilterSection.addEventListener('click', function(event) {
   filterRoomsByType(event);
 });
+vacantRooms.addEventListener('click', addANewBooking);
+
+function addANewBooking(event) {
+  event.preventDefault();
+  const dateSelection = document.getElementById("calendar").value;
+  let formattedDate = dayjs(dateSelection).format('YYYY/MM/DD');
+  const roomNumber = parseInt(event.target.closest('article').id);
+  const newBooking = bookingRepository.availableRooms.find(availRoom => {
+    return availRoom.number === roomNumber;
+  });
+  addBooking(roomNumber, customer, formattedDate);
+  domUpdates.show(userDashboard);
+  domUpdates.hide(vacantRooms, roomTypeFilterSection);
+  location.reload();
+}
+
 
 function filterRoomsByType(event) {
   const checkbox = event.target;
@@ -61,7 +79,7 @@ function loadApi() {
   Promise.all([fetchCustomers(), fetchBookings(), fetchRooms()])
   .then(data => {
     bookingRepository = new BookingRepository(data[1], data[2], data[0])
-    loadCustomer(25);
+    loadCustomer(5);
     bookingRepository.getBookings()
     document.getElementById("calendar").setAttribute("min", today);
     document.getElementById("calendar").setAttribute("value", today);
