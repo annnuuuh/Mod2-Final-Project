@@ -4,38 +4,46 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;1,400&family=Scheherazade+New&display=swap" rel="stylesheet">
   <title>Booking Manager</title>
 </head>
 <header>
-  <h1>Booking Manager</h1>
+  <h1>The Rosebud Motel</h1>
 </header>
 <nav>
-  <form>
-    <label for="start">Start a new booking:</label>
-    <input type="date" class="js-date-selection" id="calendar">
+  <form class="date-selection-form">
+    <label for="start">Start a new booking:
+    <input type="date" class="js-date-selection" name="date-selector" id="calendar">
     </label>
     <input type="submit" value="Find Rooms!" id="datebtn">
   </form>
-  <button class="js-user-dashboard"></button>
+  <button class="js-return-to-dashboard hidden">Return to Dashboard</button>
+  <p class="js-user-dashboard"></p>
   <div class="js-total-spent">
   </div>
 </nav>
 
 <body>
-  <h3>BOOKINGS</h3>
+    <!-- <img src="./images/floralprintbackground.png" alt="floral background"> -->
+
   <section class="bookings-container">
-    <article class="js-booking-card">
-    </article>
+    <h2 class="all-bookings-title">Confirmed Bookings</h2>
+    <section class="js-booking-card">
+    </section>
   </section>
-  <section class="upcoming-bookings-container">
-    <article class="upcoming-booking-card">
-    </article>
-  </section>
+  <!-- <section class="upcoming-bookings-container"> -->
+    <!-- <article class="upcoming-booking-card"> -->
+    <!-- </article> -->
+  <!-- </section> -->
   <aside class="js-tags">
   </aside>
   <section class="js-available-rooms hidden">
+    <div class="js-add-booking"></div>
   </section>
   <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
+
 
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>

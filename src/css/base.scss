@@ -1,8 +1,23 @@
 /* This is an example of how to import a partial scss file*/
 @import '_variables';
 
+* {
+  font-family: $main-font;
+  font-size: $main-font-size;
+}
+
 body {
-  background: $primary-background;
+  // background: #717744;
+  background: url(../images/floralprintbackground.png);
+}
+
+h1, h2 {
+  font-family: $fancy-font;
+  color: $fancy-font-color;
+  font-size: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.95);
 }
 
 header {
@@ -12,8 +27,17 @@ header {
 
 nav {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
 }
+
+form, .js-return-to-dashboard, .js-user-dashboard, .js-total-spent {
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  align-self: center;
+}
+
 .js-booking-card, .js-available-rooms {
   display: flex;
   flex-direction: row;
@@ -22,21 +46,33 @@ nav {
   align-items: center;
 }
 
-.booking, .room {
+nav, article {
   padding: 10px;
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.95);
   color: black;
   border: none;
   margin: 10px;
-  cursor: pointer;
   box-shadow: 55px;
+  font-size: 25px;
 }
 
-.booking:hover {
-  box-shadow: 25%;
+.js-return-to-dashboard, #datebtn {
+  box-shadow: none;
+  background-color: white;
+  height: 31px;
+  cursor: pointer;
+  border: none;
+
 }
 
 .hidden {
   display: none;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-size: 30px;
 }
