@@ -13,7 +13,7 @@ const domUpdates = {
   },
 
   addCustomerName(customerName) {
-    document.querySelector('.js-user-dashboard').innerText = customerName;
+    document.querySelector('.js-user-dashboard').innerText = `Welcome Back, ${customerName}!`;
   },
 
   displayCustomerBookings(customerBookings) {
@@ -21,7 +21,7 @@ const domUpdates = {
     customerBookings.forEach(booking => {
       const bookingCard =
         `<article class="booking ${booking.id}">
-        <pclass="card-title ${booking.id}">Booking Details</p>
+        <pclass="card-title ${booking.id}">Booking Details:</p>
         <p class="date ${booking.id}">Reservation Date: ${booking.date}</p>
         <p class="room-number ${booking.id}">Room Number: ${booking.roomNumber}</p>`;
         bookingSection.innerHTML += bookingCard;
@@ -29,7 +29,7 @@ const domUpdates = {
   },
 
   displayTotalSpent(customerTotal) {
-    document.querySelector('.js-total-spent').innerHTML = `<p>Total Spend: ${customerTotal}</p>`;
+    document.querySelector('.js-total-spent').innerHTML = `<p>Your Total Spend: ${customerTotal}</p>`;
   },
 
   displayAvailableRooms(availableRooms) {

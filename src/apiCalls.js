@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { loadApi } from './scripts.js';
 
 function fetchCustomers() {
   return fetch("http://localhost:3001/api/v1/customers")
@@ -39,6 +40,7 @@ function addBooking(room, customer, date) {
     headers: { 'Content-Type': 'application/json' }
   })
   .then(response => response.json())
+  .then(loadApi())
   .catch(error => console.log(error));
 }
 
@@ -49,5 +51,3 @@ export {
   fetchBookings,
   addBooking
 }
-
-// future -- export const add/remove bookings??
