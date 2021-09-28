@@ -29,7 +29,6 @@ function fetchBookings() {
 }
 
 function addBooking(room, customer, date) {
-  console.log(room);
   return fetch("http://localhost:3001/api/v1/bookings", {
     method: 'POST',
     body: JSON.stringify({
