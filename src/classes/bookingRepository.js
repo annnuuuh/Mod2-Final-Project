@@ -69,6 +69,7 @@ class BookingRepository {
       }
     })
   }
+
   filterRoomByTags() {
     let filteredRooms = [];
     this.selectedTags.forEach(selectedTag => {
@@ -76,6 +77,7 @@ class BookingRepository {
     })
     return filteredRooms;
   }
+  
   addToFilteredRoom(selectedTag, filteredRooms) {
     this.availableRooms.forEach(availableRoom => {
       if (availableRoom.roomType === selectedTag) {
